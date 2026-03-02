@@ -1,0 +1,278 @@
+\arxiv{
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\PassOptionsToPackage{hypertexnames=false}{hyperref}  %
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+    citecolor=[RGB]{50,100,170},
+    linkcolor=[RGB]{50,100,170},
+    urlcolor=[RGB]{255,102,178}}
+\usepackage{fancyhdr}
+}
+
+\arxiv{
+\newcommand{\toptitlebar}{%
+  {\color{black}\hrule height 1pt}%
+  \vskip 0.25in%
+}
+}
+
+\makeatletter
+\arxiv{
+\renewcommand{\maketitle}{%
+  \begin{center}%
+    \toptitlebar
+    \vskip 0.1in%
+    {\LARGE\bfseries \@title \par}%
+    \vskip 0.3in%
+    {\normalsize \@author \par}%
+  \end{center}%
+  \par
+  \vskip 0.3in%
+}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}{-2.0ex plus
+    -0.5ex minus -.2ex}{1.5ex plus 0.3ex minus .2ex}{\large\bfseries\raggedright}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-1.8ex plus
+    -0.5ex minus -.2ex}{0.8ex plus .2ex}{\normalsize\bfseries\raggedright}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}{-1.5ex plus
+   -0.5ex minus -.2ex}{0.5ex plus .2ex}{\normalsize\bfseries\raggedright}}
+
+\renewenvironment{abstract}%
+  {\centerline{\large\bfseries Abstract}%
+   \begin{list}{}%
+      {\setlength{\rightmargin}{0.6cm}%
+       \setlength{\leftmargin}{0.6cm}}%
+    \item[]\ignorespaces}%
+  {\unskip\end{list}}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.4em}
+}
+\makeatother
+
+
+\iclr{
+\usepackage[colorlinks=true, linkcolor=blue!70!black, citecolor=blue!70!black,urlcolor=blue!70!black,breaklinks=true]{hyperref}
+\PassOptionsToPackage{dvipsnames}{xcolor} 
+}
+
+
+\usepackage{microtype}
+\usepackage{hhline}
+
+\makeatletter
+\newcommand{\neutralize}[1]{\expandafter\let\csname c@#1\endcsname\count@}
+\makeatother
+
+   \newenvironment{lemmod}[2]
+  {\renewcommand{\thelemma}{\ref*{#1}#2}%
+   \neutralize{lemma}\phantomsection
+   \begin{lemma}}
+  {\end{lemma}}
+
+
+\newenvironment{thmmod}[2]
+  {\renewcommand{\thetheorem}{\ref*{#1}#2}%
+   \neutralize{theorem}\phantomsection
+   \begin{theorem}}
+  {\end{theorem}}
+
+
+\newenvironment{bodythmmod}[2]
+  {\renewcommand{\thebodytheorem}{\ref*{#1}#2}%
+   \neutralize{bodytheorem}\phantomsection
+   \begin{theorem}}
+  {\end{theorem}}
+
+    \newenvironment{propmod}[2]
+  {\renewcommand{\theproposition}{\ref*{#1}#2}%
+   \neutralize{proposition}\phantomsection
+   \begin{proposition}}
+  {\end{proposition}}
+
+     \newenvironment{defnmod}[2]
+  {\renewcommand{\thedefinition}{\ref*{#1}#2}%
+   \neutralize{definition}\phantomsection
+   \begin{definition}}
+  {\end{definition}}
+
+   \newenvironment{asmmod}[2]
+  {\renewcommand{\theassumption}{\ref*{#1}#2}%
+   \neutralize{assumption}\phantomsection
+   \begin{assumption}}
+  {\end{assumption}}
+
+  \newenvironment{cormod}[2]
+  {\renewcommand{\thecorollary}{\ref*{#1}#2}%
+   \neutralize{corollary}\phantomsection
+   \begin{corollary}}
+  {\end{corollary}}
+  
+   \newenvironment{condmod}[2]
+  {\renewcommand{\thecondition}{\ref*{#1}#2}%
+   \neutralize{condition}\phantomsection
+   \begin{condition}}
+  {\end{condition}}
+
+
+\usepackage{algorithm}
+
+
+\arxiv{
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\bibpunct{(}{)}{;}{a}{,}{,}
+}
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{xpatch}
+
+
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\declaretheorem[name=Theorem]{theorem}
+\declaretheorem[name=Lemma,sibling=theorem]{lemma}
+\declaretheorem[name=Assumption,sibling=theorem]{assumption}
+\declaretheorem[name=Condition,sibling=theorem]{condition}
+\declaretheorem[qed=$\triangleleft$,name=Example,sibling=theorem]{example}
+\declaretheorem[name=Remark,style=definition,sibling=theorem]{remark}
+\declaretheorem[name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[name=Fact,sibling=theorem]{fact}
+
+
+\makeatletter
+  \renewenvironment{proof}[1][Proof]%
+  {%
+   \par\noindent{\bfseries\upshape {#1.}\ }%
+  }%
+  {\qed\newline}
+  \makeatother
+
+\theoremstyle{definition}  %
+\newtheorem{exercise}{Exercise}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{question}{Question}
+\newtheorem{model}{Model}
+
+
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{openproblem}{Open Problem}
+
+\xpatchcmd{\proof}{\itshape}{\normalfont\proofnameformat}{}{}
+\newcommand{\proofnameformat}{\bfseries}
+
+\newcommand{\notimplies}{\nRightarrow}
+
+
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\newcommand{\pref}[1]{\cref{#1}}
+\newcommand{\pfref}[1]{Proof of \pref{#1}}
+\newcommand{\savehyperref}[2]{\texorpdfstring{\hyperref[#1]{#2}}{#2}}
+
+\renewcommand{\eqref}[1]{\texorpdfstring{\hyperref[#1]{(\ref*{#1})}}{(\ref*{#1})}}
+
+\crefformat{equation}{#2Eq. (#1)#3}
+\Crefformat{equation}{#2Eq. (#1)#3}
+
+\Crefformat{figure}{#2Figure #1#3}
+\Crefname{assumption}{Assumption}{Assumptions}
+\Crefformat{assumption}{#2Assumption #1#3}
+\Crefname{subsubsection}{Section}{Sections}
+\crefformat{subsubsection}{#2Section #1#3}
+\Crefformat{subsubsection}{#2Section #1#3}
+\Crefname{alg}{Alg.}{Algs.}
+
+\newcommand{\sref}[1]{\texorpdfstring{\hyperref[#1]{Section
+      \ref*{#1}}}{Section \ref*{#1}}}
+\newcommand{\aref}[1]{\texorpdfstring{\hyperref[#1]{Appendix
+      \ref*{#1}}}{Appendix \ref*{#1}}}
+
+
+
+\usepackage{crossreftools}
+\pdfstringdefDisableCommands{%
+    \let\Cref\crtCref
+    \let\cref\crtcref
+}
+\newcommand{\preft}[1]{\crtcref{#1}}
+\newcommand{\creftitle}[1]{\crtcref{#1}}
+
+
+
+\usepackage{xparse}
+
+\ExplSyntaxOn
+\DeclareDocumentCommand{\XDeclarePairedDelimiter}{mm}
+ {
+  \__egreg_delimiter_clear_keys: %
+  \keys_set:nn { egreg/delimiters } { #2 }
+  \use:x %
+   {
+    \exp_not:n {\NewDocumentCommand{#1}{sO{}m} }
+     {
+      \exp_not:n { \IfBooleanTF{##1} }
+       {
+        \exp_not:N \egreg_paired_delimiter_expand:nnnn
+         { \exp_not:V \l_egreg_delimiter_left_tl }
+         { \exp_not:V \l_egreg_delimiter_right_tl }
+         { \exp_not:n { ##3 } }
+         { \exp_not:V \l_egreg_delimiter_subscript_tl }
+       }
+       {
+        \exp_not:N \egreg_paired_delimiter_fixed:nnnnn 
+         { \exp_not:n { ##2 } }
+         { \exp_not:V \l_egreg_delimiter_left_tl }
+         { \exp_not:V \l_egreg_delimiter_right_tl }
+         { \exp_not:n { ##3 } }
+         { \exp_not:V \l_egreg_delimiter_subscript_tl }
+       }
+     }
+   }
+ }
+
+\keys_define:nn { egreg/delimiters }
+ {
+  left      .tl_set:N = \l_egreg_delimiter_left_tl,
+  right     .tl_set:N = \l_egreg_delimiter_right_tl,
+  subscript .tl_set:N = \l_egreg_delimiter_subscript_tl,
+ }
+
+\cs_new_protected:Npn \__egreg_delimiter_clear_keys:
+ {
+  \keys_set:nn { egreg/delimiters } { left=.,right=.,subscript={} }
+ }
+
+\cs_new_protected:Npn \egreg_paired_delimiter_expand:nnnn #1 #2 #3 #4
+ {%
+  \mathopen{}
+  \mathclose\c_group_begin_token
+   \left#1
+   #3
+   \group_insert_after:N \c_group_end_token
+   \right#2
+   \tl_if_empty:nF {#4} { \c_math_subscript_token {#4} }
+ }
+\cs_new_protected:Npn \egreg_paired_delimiter_fixed:nnnnn #1 #2 #3 #4 #5
+ {
+  \mathopen{#1#2}#4\mathclose{#1#3}
+  \tl_if_empty:nF {#5} { \c_math_subscript_token {#5} }
+ }
+\ExplSyntaxOff
+
+\XDeclarePairedDelimiter{\supnorm}{
+  left=\lVert,
+  right=\rVert,
+  subscript=\infty
+  }
