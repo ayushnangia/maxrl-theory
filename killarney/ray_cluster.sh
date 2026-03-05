@@ -52,7 +52,8 @@ start_ray_cluster() {
         --node-ip-address="$head_node_ip" \
         --port=$port \
         --num-cpus "${SLURM_CPUS_PER_TASK}" \
-        --num-gpus "${SLURM_GPUS_ON_NODE}"
+        --num-gpus "${SLURM_GPUS_ON_NODE:-8}" \
+        --temp-dir /tmp/ray
     sleep 10
     ray status
     echo "Head node ready"
@@ -71,7 +72,7 @@ start_ray_cluster() {
             export RAY_TMPDIR=/tmp/ray
             ray start --address '${ip_head}' \
                 --num-cpus ${SLURM_CPUS_PER_TASK} \
-                --num-gpus ${SLURM_GPUS_ON_NODE}
+                --num-gpus ${SLURM_GPUS_ON_NODE:-8}
         " &
         sleep 10
     done

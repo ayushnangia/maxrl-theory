@@ -434,7 +434,7 @@ def compute_maxrl_outcome_advantage(
                 raise ValueError(f"no score in prompt index: {idx}")
             
         for i in range(bsz):
-            scores[i] = (scores[i] - id2mean[index[i]]) / (id2mean[index[i]] + epsilon)
+            scores[i] = (scores[i] - id2mean[index[i]]) / (id2std[index[i]] + epsilon)
 
         scores = scores.unsqueeze(-1) * response_mask
 
@@ -804,8 +804,7 @@ def compute_vr_cond_advantage(
         P = (P > 0.5).float()
         C = torch.sum(P, dim=1)  # shape: (m,) 
         W_succ, W_fail = vr_cond_weights(C, n)
-        advantage = W_succ[:, None] * P + W_fail[:, None] * (1 - P)  
-        print(f"[VR_COND DEBUG] C: {C[:5]}, W_succ: {W_succ[:5]}, W_fail: {W_fail[:5]}, advantage mean: {advantage.mean()}")
+        advantage = W_succ[:, None] * P + W_fail[:, None] * (1 - P)
         advantage = advantage.flatten().unsqueeze(-1) * response_mask  # shape: (bs, response_length)
     return advantage, advantage
 
