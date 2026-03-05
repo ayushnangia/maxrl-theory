@@ -15,8 +15,8 @@
 # Phase 2: Maze 17x17 — 7-estimator sweep (job array)
 # Uses HF rollout backend (no vllm needed)
 
-source "$(dirname "$0")/common.sh"
-source "$(dirname "$0")/ray_cluster.sh"
+source /home/anangia/maxrl-theory/killarney/common.sh
+source /home/anangia/maxrl-theory/killarney/ray_cluster.sh
 
 # ============ Estimator Selection ============
 ADVANTAGE_ESTIMATOR=${ESTIMATORS[$SLURM_ARRAY_TASK_ID]}

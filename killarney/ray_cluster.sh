@@ -1,7 +1,7 @@
 #!/bin/bash
 # ray_cluster.sh — Ray cluster start/stop functions for Killarney
 # Source this file after common.sh:
-#   source "$(dirname "$0")/ray_cluster.sh"
+#   source /home/anangia/maxrl-theory/killarney/ray_cluster.sh
 
 # Start a single-node Ray head (uses all GPUs on this node)
 start_ray_head() {

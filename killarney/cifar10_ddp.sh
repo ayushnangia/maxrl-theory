@@ -11,7 +11,7 @@
 
 # Phase 4b: CIFAR-10 multi-GPU DDP experiments
 
-source "$(dirname "$0")/common.sh"
+source /home/anangia/maxrl-theory/killarney/common.sh
 
 echo "=== CIFAR-10 RL Experiments (4-GPU DDP) ==="
 srun torchrun --nproc_per_node=4 \

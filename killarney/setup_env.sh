@@ -9,15 +9,10 @@
 #SBATCH --output=/scratch/anangia/logs/setup_%j.out
 #SBATCH --error=/scratch/anangia/logs/setup_%j.err
 
-# Phase 0: One-time setup — build vllm from source, download models and datasets
-# IMPORTANT: This runs on the compute node (not login node!) via sbatch
+# Phase 0: One-time setup — download models and datasets
+# vLLM 0.8.4 + Ray 2.43.0 already installed in ~/maxrl_env
 
-set -euo pipefail
-
-# ============ Environment ============
-module load python/3.10.13 cuda/12.6 arrow/17.0.0 opencv/4.11.0
-source ~/maxrl_env/bin/activate
-cd /home/anangia/maxrl-theory
+source /home/anangia/maxrl-theory/killarney/common.sh
 
 SCRATCH=/scratch/anangia
 
@@ -26,23 +21,10 @@ echo "=== Creating directories ==="
 mkdir -p ${SCRATCH}/{models,data,checkpoints,logs}
 mkdir -p ${SCRATCH}/checkpoints/{smollm,maze,qwen3}
 
-# ============ Build vLLM 0.8.4 from Source ============
-echo "=== Building vLLM 0.8.4 from source (on compute node with CUDA 12.6) ==="
-BUILD_DIR=$(mktemp -d /tmp/vllm_build.XXXXXX)
-cd ${BUILD_DIR}
-
-git clone --branch v0.8.4 --depth 1 https://github.com/vllm-project/vllm.git
-cd vllm
-
-# Build with CUDA 12.6 on the H100
-export TORCH_CUDA_ARCH_LIST="9.0"  # H100 = sm_90
-export MAX_JOBS=8
-pip install -e .
-
-cd /home/anangia/maxrl-theory
-rm -rf ${BUILD_DIR}
-
-echo "vLLM version: $(python -c 'import vllm; print(vllm.__version__)')"
+# ============ Verify vLLM ============
+echo "=== Checking vLLM ==="
+python -c "import vllm; print(f'vllm {vllm.__version__}')"
+python -c "import ray; print(f'ray {ray.__version__}')"
 
 # ============ Download Models ============
 echo "=== Downloading SmolLM2-360M-Instruct ==="

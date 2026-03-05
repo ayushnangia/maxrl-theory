@@ -14,8 +14,8 @@
 
 # Phase 1: SmolLM2-360M on GSM8K — 7-estimator sweep (job array)
 
-source "$(dirname "$0")/common.sh"
-source "$(dirname "$0")/ray_cluster.sh"
+source /home/anangia/maxrl-theory/killarney/common.sh
+source /home/anangia/maxrl-theory/killarney/ray_cluster.sh
 
 # ============ Estimator Selection ============
 ADVANTAGE_ESTIMATOR=${ESTIMATORS[$SLURM_ARRAY_TASK_ID]}

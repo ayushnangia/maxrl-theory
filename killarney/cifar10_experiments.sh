@@ -11,7 +11,7 @@
 
 # Phase 4a: CIFAR-10 single-GPU experiments
 
-source "$(dirname "$0")/common.sh"
+source /home/anangia/maxrl-theory/killarney/common.sh
 
 echo "=== CIFAR-10 RL Experiments (single GPU) ==="
 python verl/cifar10_experiments/pytorch_cifar10_rl_experiments.py \

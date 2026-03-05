@@ -1,7 +1,7 @@
 #!/bin/bash
 # common.sh — Shared environment setup for all Killarney jobs
 # Source this file at the top of every Slurm script:
-#   source "$(dirname "$0")/common.sh"
+#   source /home/anangia/maxrl-theory/killarney/common.sh
 
 set -euo pipefail
 
