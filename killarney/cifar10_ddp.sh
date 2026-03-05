@@ -14,7 +14,7 @@
 source /home/anangia/maxrl-theory/killarney/common.sh
 
 echo "=== CIFAR-10 RL Experiments (4-GPU DDP) ==="
-srun torchrun --nproc_per_node=4 \
+torchrun --nproc_per_node=4 \
     verl/cifar10_experiments/pytorch_cifar10_rl_experiments_multi_gpu.py \
     --epochs 200 \
     --wandb

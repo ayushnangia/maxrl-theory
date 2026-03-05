@@ -3,13 +3,16 @@
 # Source this file at the top of every Slurm script:
 #   source /home/anangia/maxrl-theory/killarney/common.sh
 
-set -euo pipefail
+set -eo pipefail
 
 # ============ Modules ============
 module load python/3.10.13 cuda/12.6 arrow/17.0.0 opencv/4.11.0
 
 # ============ Virtual Environment ============
 source ~/maxrl_env/bin/activate
+
+# ============ HuggingFace Token ============
+export HF_TOKEN=$(grep HF_TOKEN ~/.env 2>/dev/null | cut -d= -f2)
 
 # ============ Working Directory ============
 cd /home/anangia/maxrl-theory
