@@ -38,7 +38,7 @@ export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 export RAY_TMPDIR=/tmp/ray
 
 # ============ WandB ============
-export WANDB_MODE=online
+export WANDB_MODE=offline
 
 # ============ 7 Estimators ============
 ESTIMATORS=(maxrl vr_cond grpo maclaurin maclaurin_baseline cross_fitted_maclaurin rloo)
